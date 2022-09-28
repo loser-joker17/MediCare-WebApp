@@ -1,0 +1,61 @@
+
+<link rel="stylesheet" href='/css/home.css'>
+<link rel="stylesheet" href='/css/DocPatChat.css'>
+<link rel="stylesheet" href='/css/treatment_detail.css'>
+<link rel="stylesheet" href="/css/profile_doctor.css">
+
+<div class="outer">
+    <div class="container">
+            <button class="btn" id="vital-sign-btn"><a href="#">Vital Sign and Weight</a></button>
+            <!-- <button class="btn" id="report-btn"><a href="/treatments/reports/<%=treatment.id%>">Reports</a></button> -->
+            <button class="btn" id="report-btn"><a href="#">Reports</a></button>
+            <button class="btn" id="update-btn"><a href="#">LastUpdate On Treatment</a></button>
+            <%if(user.user_type==='doctor')
+            {%>
+              <button class="btn" id="hidden-btn"><a href="#">Hidden Notes</a></button>
+            <%}%>
+            <button class="btn" id="history-btn"><a href="#">History</a></button>
+        </ul>
+    </div>
+    <div class="inner">
+        <div class="info">
+               <div class="user">
+                <img src="<%=treatment.doctor.avatar%>" alt="No profile_pic" width="100">
+                <p class="name"><%=treatment.doctor.name%></p>
+                 <p class="prop"><%=treatment.doctor.qualifications%></p>
+                 <%if(treatment.doctor.phone)
+                 {%>
+                    <p class="prop"><i class="fas fa-phone"></i><%=treatment.doctor.phone%></p>
+                 <%}%>
+               </div>
+              <div class="user">
+                <img src="<%=treatment.patient.avatar%>" alt="No profile_pic" width="100">
+                <p class="name"><%=treatment.patient.name%></p>
+                <p class="prop">Disease: <%=treatment.disease%></p>
+                <p class="prop"><i class="fas fa-phone"></i> <%=treatment.patient.phone%></p>
+            </div>
+      </div>
+        <div class="others">
+            <div id="vital-sign">
+                <%-include('_vital_sign')-%>
+             </div>
+            <div id="reports">
+                <%-include('_reports')-%>
+             </div>
+            <div id="lastupdate">
+                <%-include('_lastupdate')-%>
+             </div>
+            <div id="history">
+                <%-include('_history')-%>
+             </div>
+             <%if(user.user_type==='doctor')
+             {%>
+                <div id="hiddennotes">
+                    <%-include('_hiddennotes')-%>
+                 </div>
+             <%}%>
+        </div>
+    </div>
+</div>
+<script src="/js/treatment_detail.js"></script>
+

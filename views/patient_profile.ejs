@@ -1,0 +1,59 @@
+<link rel="stylesheet" href='/css/profile_doctor.css'>
+<div class="outer">
+    <div class="current">
+        <div class="img-name">
+            <div class="img">
+                <img src="<%=profile_patient.avatar%>" alt="No profile_pic" width="100">
+            </div>
+            <div class="detail">
+                <h3><%= profile_patient.name %></h3>
+            </div>
+        </div>
+        <div class="lists">
+            <div class="emails">
+                <h6>Email</h6>
+                <ul>
+                  <li><%= profile_patient.email %></li>
+                </ul>
+            </div>
+            <div class="phone">
+                <h6>Phone</h6>
+                <ul>
+                  <li><%= profile_patient.phone %></li>
+                </ul>
+            </div>
+            <div class="gender">
+                <h6>Gender</h6>
+               <ul>
+                <li><%= profile_patient.gender %></li>
+               </ul>
+
+            </div>
+             <div class="locations">
+                <h6>Address</h6>
+                <ul>
+                  <li><%= profile_patient.address %></li>
+                </ul>
+             </div>
+        </div>
+      </div>
+      <%if(locals.patient)
+      {%>
+           <%if(patient.id==profile_patient.id)
+           {%>
+            <div class="update">
+                <p>Update Information</p>
+                <form action="/patients/update/<%= profile_patient.id %>"  method="POST" enctype="multipart/form-data">
+                    <input type="file" name="avatar" id="" placeholder="Profile Picture">
+                    <input type="text" name="name" placeholder="Name"  value="<%=profile_patient.name%>" required> 
+                    <input type="email" name="email" placeholder="Email" value="<%=profile_patient.email%>" required>
+                    <input type="tel" name="phone" placeholder="Phone"  value="<%=profile_patient.phone%>">
+                    <input type="text" name="gender" placeholder="Gender" value="<%=profile_patient.gender%>" >
+                    <input type="text" id="address" name="address" placeholder="address" value="<%=profile_patient.address%>">
+                    <input class="sub" type="submit"  value="Update">
+                </form>
+              </div>
+           <%}%>
+      <%}%>
+    
+</div>
